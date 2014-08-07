@@ -1,10 +1,25 @@
 // Global Variables
-EAST setFriend [WEST, 0];
+EAST setFriend [WEST, 0];			// AI Units
 EAST setFriend [RESISTANCE, 0];
 EAST setFriend [CIVILIAN, 0];
 EAST setFriend [EAST, 0];
 
-VERSION = "v1.3.28";
+WEST setFriend [WEST, 0];				// Other / Observers
+WEST setFriend [RESISTANCE, 0];
+WEST setFriend [CIVILIAN, 0];
+WEST setFriend [EAST, 0];
+
+CIVILIAN setFriend [WEST, 0];			// Human players
+CIVILIAN setFriend [RESISTANCE, 0];
+CIVILIAN setFriend [CIVILIAN, 1];		// Set to 1 as needed to access crates. :/
+CIVILIAN setFriend [EAST, 0];
+
+RESISTANCE setFriend [WEST, 0];
+RESISTANCE setFriend [RESISTANCE, 0];
+RESISTANCE setFriend [CIVILIAN, 0];
+RESISTANCE setFriend [EAST, 0];
+
+VERSION = "v1.4.29";
 GAMEMODEZ = (paramsArray select 0);
 ZONELIMIT = (paramsArray select 1);
 ZONECREEP = (paramsArray select 2);
@@ -155,6 +170,7 @@ obj_backpacks = [
 ];
 obj_items = [	
 	"Binocular",
+	"ItemGPS",
 	"H_Bandanna_camo",
 	"H_Bandanna_khk",
 	"H_Bandanna_surfer",
@@ -203,65 +219,11 @@ obj_items = [
 	"U_B_CombatUniform_mcam_tshirt",
 	"U_B_CombatUniform_mcam_vest",
 	"U_B_CombatUniform_mcam_worn",
-	"U_B_CombatUniform_sgg",
-	"U_B_CombatUniform_sgg_tshirt",
-	"U_B_CombatUniform_sgg_vest",
-	"U_B_CombatUniform_wdl",
-	"U_B_CombatUniform_wdl_tshirt",
-	"U_B_CombatUniform_wdl_vest",
 	"U_B_GhillieSuit",
 	"U_B_HeliPilotCoveralls",
 	"U_B_PilotCoveralls",
 	"U_B_SpecopsUniform_sgg",
 	"U_B_Wetsuit",
-	"U_C_Commoner1_1",
-	"U_C_Commoner1_2",
-	"U_C_Commoner1_3",
-	"U_C_Commoner2_1",
-	"U_C_Commoner2_2",
-	"U_C_Commoner2_3",
-	"U_C_Farmer",
-	"U_C_Fisherman",
-	"U_C_FishermanOveralls",
-	"U_C_HunterBody_brn",
-	"U_C_HunterBody_grn",
-	"U_C_Novak",
-	"U_C_Poloshirt_blue",
-	"U_C_Poloshirt_burgundy",
-	"U_C_Poloshirt_redwhite",
-	"U_C_Poloshirt_salmon",
-	"U_C_Poloshirt_stripped",
-	"U_C_Poloshirt_tricolour",
-	"U_C_Poloshirt_burgundy",
-	"U_C_Poor_1",
-	"U_C_Poor_2",
-	"U_C_Poor_shorts_1",
-	"U_C_Poor_shorts_2",
-	"U_C_PriestBody",
-	"U_C_Scavenger_1",
-	"U_C_Scavenger_2",
-	"U_C_ShirtSurfer_shorts",
-	"U_C_TeeSurfer_shorts_1",
-	"U_C_TeeSurfer_shorts_2",
-	"U_C_WorkerCoveralls",
-	"U_C_WorkerOveralls",
-	"U_I_CombatUniform",
-	"U_I_CombatUniform_shortsleeve",
-	"U_I_CombatUniform_tshirt",
-	"U_I_GhillieSuit",
-	"U_I_HeliPilotCoveralls",
-	"U_I_OfficerUniform",
-	"U_I_PilotCoveralls",
-	"U_I_Wetsuit",
-	"U_I_PilotCoveralls",
-	"U_O_CombatUniform_ocamo",
-	"U_O_CombatUniform_oucamo",
-	"U_O_GhillieSuit",
-	"U_O_OfficerUniform_ocamo",
-	"U_O_PilotCoveralls",
-	"U_O_SpecopsUniform_blk",
-	"U_O_SpecopsUniform_ocamo",
-	"U_O_Wetsuit",
 	"V_BandollierB_blk",
 	"V_BandollierB_cbr",
 	"V_BandollierB_oli",

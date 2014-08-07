@@ -14,8 +14,6 @@ if (isServer) then {
 		_unit = _this select 0;
 		_sel = _this select 1;
 		
-		EAST setFriend [EAST, 0];
-		
 		_cnt = createCenter EAST;
 		_grp = createGroup EAST;
 		_newUnit = _grp createUnit ["C_man_1_3_F", (getmarkerpos "respawn_civilian"),[],20,"FORM"];
@@ -80,6 +78,18 @@ if (isServer) then {
 	_sel = 0;
 	while {true} do {
 		_unit = aiUnits select _sel;
+		
+		// Auto refil ammo for AI (Trial)
+			_ac = 0;
+			_aCo = 0;
+			_ammoArray = magazinesAmmoFull _unit;
+			while {_ac < (count _ammoArray)} do {
+				_aCo = _aCo + ((_ammoArray select _ac) select 1);
+				_ac = _ac + 1;
+			};
+			if (_aCo < 1) then {
+				_unit setAmmo [currentWeapon _unit, 1];
+			};
 		
 		if (alive _unit && isTouchingGround _unit) then {
 			// Ensure unit is alive and on the ground.
