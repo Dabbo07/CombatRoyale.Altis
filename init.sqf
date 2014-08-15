@@ -19,7 +19,7 @@ RESISTANCE setFriend [RESISTANCE, 0];
 RESISTANCE setFriend [CIVILIAN, 0];
 RESISTANCE setFriend [EAST, 0];
 
-VERSION = "v1.4.29";
+VERSION = "v1.0.0";
 GAMEMODEZ = (paramsArray select 0);
 ZONELIMIT = (paramsArray select 1);
 ZONECREEP = (paramsArray select 2);
@@ -51,7 +51,7 @@ while {aiM < 50} do {
 CombatPlayerScore = 0;
 carMarks = ["car01m","car02m","car03m","car04m","car05m","car06m","car07m","car08m","car09m","car10m","car11m","car12m","car13m","car14m","car15m","car16m","car17m","car18m","car19m","car20m"];
 SAFEZONE = 54;
-introText = format["Welcome to Combat Royale Altis\nVersion %1\n\nBy Darren 'Dabbo' Edmonds.", VERSION];
+introText = format["Welcome to Combat Royale Altis\nTournament Version %1\n\nBy Darren 'Dabbo' Edmonds.", VERSION];
 ZoneDialogMessage = "Zone Status...";
 zonesRemainUpdate = 0;
 ZoneDialogAlert = 0;

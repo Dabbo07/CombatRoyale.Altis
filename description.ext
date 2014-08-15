@@ -1,10 +1,12 @@
-respawn = "BASE";
+#include "spectator_v3.7\spectating.hpp"
+
+respawn = 3;
 respawnDelay = 25;
 respawnDialog = false;
 disabledAI = 0;
 
 author = "Darren 'Dabbo' Edmonds";
-onLoadName = "Combat Royale Altis";
+onLoadName = "CR Tournament";
 onLoadMission = "Multiplayer Deathmatch, Hunt and Survive!";
 loadScreen = "LoadingImage.jpg";
 class Header
