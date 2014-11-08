@@ -13,7 +13,6 @@ class Mission
 		"a3_soft_f_beta_quadbike",
 		"A3_Soft_F_SUV",
 		"A3_Soft_F_Truck",
-		"A3_Characters_F_OPFOR",
 		"A3_Structures_F_Walls",
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
@@ -29,7 +28,6 @@ class Mission
 		"A3_Soft_F_Car",
 		"A3_Soft_F_Offroad_01",
 		"A3_Soft_F_Quadbike",
-		"a3_soft_f_beta_quadbike",
 		"A3_Soft_F_SUV",
 		"A3_Soft_F_Truck",
 		"A3_Structures_F_Walls",
@@ -38,7 +36,7 @@ class Mission
 	randomSeed=6961369;
 	class Intel
 	{
-		briefingName="Combat Royale on Altis v1.4.29";
+		briefingName="Combat Royale on Altis v1.4.30";
 		overviewText="Multiplayer Deathmatch Survival Scenario; Find Weapons, Hunt other players, Survive!";
 		resistanceWest=0;
 		startWeather=0.29999998;

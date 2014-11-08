@@ -19,7 +19,7 @@ RESISTANCE setFriend [RESISTANCE, 0];
 RESISTANCE setFriend [CIVILIAN, 0];
 RESISTANCE setFriend [EAST, 0];
 
-VERSION = "v1.4.29";
+VERSION = "v1.4.30";
 GAMEMODEZ = (paramsArray select 0);
 ZONELIMIT = (paramsArray select 1);
 ZONECREEP = (paramsArray select 2);
@@ -33,6 +33,8 @@ SHIELDCARS = (paramsArray select 9);
 PLACECARS = (paramsArray select 10);
 AIENABLE = (paramsArray select 11);
 STARTGUN = (paramsArray select 12);
+
+enableSaving [false, false];
 
 killerScored = objNull;
 aiMarks = [];
