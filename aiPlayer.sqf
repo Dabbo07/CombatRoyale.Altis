@@ -1,5 +1,8 @@
 if (isServer) then {
 
+	SEARCH_RANGE = 800;
+	aiGroups = [];
+
 	aiDeath = {
 		_killed = _this select 0;
 		_killer = _this select 1;
@@ -14,13 +17,13 @@ if (isServer) then {
 		_unit = _this select 0;
 		_sel = _this select 1;
 		
-		_cnt = createCenter EAST;
-		_grp = createGroup EAST;
-		_newUnit = _grp createUnit ["C_man_1_3_F", (getmarkerpos "respawn_civilian"),[],20,"FORM"];
-		deleteVehicle _unit;
+		_grp = aiGroups select _sel;
 		_grp setBehaviour "COMBAT";
 		_grp setCombatMode "RED";
-		[_newUnit] join grpnull;
+		_grp setSpeedMode "FULL";
+
+		_newUnit = _grp createUnit ["C_man_1_3_F", (getmarkerpos "respawn_civilian"),[],20,"FORM"];
+		deleteVehicle _unit;
 		
 		aiUnits set [_sel, _newUnit];
 
@@ -29,7 +32,6 @@ if (isServer) then {
 		_newUnit addMagazine (obj_mags select _rg);
 		_newUnit addMagazine (obj_mags select _rg);
 		_newUnit addWeapon (obj_guns select _rg);
-		_newUnit addMagazine (obj_mags select _rg);
 		_newUnit addBackpack "B_Parachute";
 
 		_randSel = 10;
@@ -67,9 +69,18 @@ if (isServer) then {
 	};
 
 	// Initialisation
-	_validUnitTypes = [ "CAManBase", "O_Soldier_F", "B_Soldier_F", "SoldierWB", "C_Quadbike_01_F", "Steerable_Parachute_F", "Civilian", "C_man_1", "C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F", "C_man_polo_1_F", "C_man_polo_2_F", "C_man_polo_3_F", "C_man_polo_4_F", "C_man_polo_5_F", "C_man_polo_6_F" ];
+	_validUnitTypes = [ "B_Pilot_F", "CAManBase", "O_Soldier_F", "B_Soldier_F", "SoldierWB", "C_Quadbike_01_F", "Steerable_Parachute_F", "Civilian", "C_man_1", "C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F", "C_man_polo_1_F", "C_man_polo_2_F", "C_man_polo_3_F", "C_man_polo_4_F", "C_man_polo_5_F", "C_man_polo_6_F" ];
 	_sel = 0;
 	while {_sel < AIENABLE} do {
+	
+		_cnt = createCenter EAST;
+		_grp = createGroup EAST;
+		_grp setBehaviour "COMBAT";
+		_grp setCombatMode "RED";
+		_grp setSpeedMode "FULL";
+		
+		aiGroups set [_sel, _grp];
+	
 		_unit = aiUnits select _sel;
 		[_unit, _sel] call respawnAIFunc;
 		_sel = _sel + 1;
@@ -90,13 +101,13 @@ if (isServer) then {
 			if (_aCo < 1) then {
 				_unit setAmmo [currentWeapon _unit, 1];
 			};
-		
-		if (alive _unit && isTouchingGround _unit) then {
+
+		if (alive _unit && surfaceIsWater position _unit) then {
+			// Unit landed/over? in the water, might as well kill it off.
+			_unit setDamage 1;
+		} else {
 			// Ensure unit is alive and on the ground.
-			if (surfaceIsWater position _unit) then {
-				// Unit landed in the water, might as well kill it off.
-				_unit setDamage 1;
-			} else {
+			if (alive _unit && isTouchingGround _unit) then {
 				// Hunter section START
 				_targArray = _unit nearTargets 175;
 				_co = count _targArray;
@@ -111,12 +122,17 @@ if (isServer) then {
 						_pos = _targInfo select 0;
 						_dist = _unit distance _pos;
 						_ty = _targInfo select 1;
+						_tt = _targInfo select 4;
 						
 						_validTarget = {_x == _ty} count _validUnitTypes;
 						if (_validTarget > 0) then {
-							if (_dist < _closest) then {
-								_closest = _dist;
-								_selTarg = _targInfo;
+							if ({alive _x} count crew _tt == 0) then {
+								//player globalChat format["%1 No crew in target type : %2", _sel, _ty];
+							} else {
+								if (_dist < _closest) then {
+									_closest = _dist;
+									_selTarg = _targInfo;
+								};	
 							};
 						};
 					} foreach _targArray;
@@ -126,6 +142,7 @@ if (isServer) then {
 					if (_closest != 200) then {
 						_tt = _selTarg select 4;
 						_ts = _selTarg select 2;
+						_ty = _selTarg select 1;
 						_unit doWatch _tt;
 						_unit doTarget _tt;
 						if ((random 100) > 90) then {
@@ -138,39 +155,42 @@ if (isServer) then {
 					};
 				};
 				// Hunter section END
-				
+			
 				// MOVE MODE START
 				if (_moveMode) then {
-						// Move to unit marker or crate position code here!
-						_pos = position _unit;
-						_closest = 2000; // Maximum tracking range!
-						// Player scan.
-						{
-							_mark = format["%1m", _x];
-							// TODO: Add check to make sure marker is not khaki colours (human killed/discon)
-							_dist = floor(_unit distance (getMarkerPos _mark));
-							if (_dist < _closest) then {
-								_closest = _dist;
-								_pos = getMarkerPos _mark;
-							};
-						} foreach playableUnits;
-						// AI Player scan.
-						_co = 0;
-						_target = _unit;
-						while {_co < AIENABLE} do {
-							_dist = floor(_unit distance (getMarkerPos (aiMarks select _co)));
-							_tempUnit = aiUnits select _co;
-							if (_dist < _closest && _tempUnit != _unit && alive _tempUnit) then {
-								_closest = _dist;
-								_pos = getMarkerPos (aiMarks select _co);
-								_target = _tempUnit; 
-							};
-							_co = _co + 1;
+					// Move to unit marker or crate position code here!
+					_pos = position _unit;
+					_closest = SEARCH_RANGE; // Maximum tracking range!
+					// Player scan.
+					{
+						_mark = format["%1m", _x];
+						_dist = floor(_unit distance (getMarkerPos _mark));
+						if (_dist < _closest) then {
+							_closest = _dist;
+							_pos = getMarkerPos _mark;
 						};
-						if (_closest != 2000) then {
-							_unit doMove _pos;
+					} foreach playableUnits;
+					// AI Player scan.
+					_co = 0;
+					_target = _unit;
+					while {_co < AIENABLE} do {
+						_dist = floor(_unit distance (getMarkerPos (aiMarks select _co)));
+						_tempUnit = aiUnits select _co;
+						if (_dist < _closest && _tempUnit != _unit && alive _tempUnit) then {
+							_closest = _dist;
+							_pos = getMarkerPos (aiMarks select _co);
+							_target = _tempUnit; 
 						};
+						_co = _co + 1;
 					};
+					if (_closest != SEARCH_RANGE) then {
+						// Target within SEARCH_RANGE, move to last known position.
+						_unit doMove _pos;
+					} else {	
+						// Move to blue safe zone.
+						_unit doMove (getMarkerPos (zones select SAFEZONE));
+					};
+				};
 					// MOVE MODE END
 			};
 		};
