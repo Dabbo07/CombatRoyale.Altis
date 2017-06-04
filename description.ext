@@ -359,8 +359,8 @@ class Params
 	{
 		//paramsArray[3]
 		title = "Player Tracker Update Interval";
-		values[] = {30, 45, 60, 90, 120, 240, 300, 480, 600};
-		texts[] = {"30 seconds", "45 seconds", "1 minute", "1 minute 30 seconds", "2 minutes", "4 minutes", "5 minutes", "8 minutes", "10 minutes"};
+		values[] = {1, 5, 15, 30, 45, 60, 90, 120, 240, 300, 480, 600};
+		texts[] = {"1 second (use with caution, potential performance hit with lots of units)", "5 seconds", "15 seconds", "30 seconds", "45 seconds", "1 minute", "1 minute 30 seconds", "2 minutes", "4 minutes", "5 minutes", "8 minutes", "10 minutes"};
 		default = 45;
 	};
 	class CrateMarkerSize

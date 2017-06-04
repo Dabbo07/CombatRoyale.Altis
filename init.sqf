@@ -19,7 +19,7 @@ RESISTANCE setFriend [RESISTANCE, 0];
 RESISTANCE setFriend [CIVILIAN, 0];
 RESISTANCE setFriend [EAST, 0];
 
-VERSION = "v1.5.31";
+VERSION = "v1.6.32";
 GAMEMODEZ = (paramsArray select 0);
 ZONELIMIT = (paramsArray select 1);
 ZONECREEP = (paramsArray select 2);

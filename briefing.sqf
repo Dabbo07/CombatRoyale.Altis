@@ -62,7 +62,7 @@ with popular mod DayZ Battle Royale, http://dayzbattleroyale.com made by PlayerU
 A very BIG thank you to the Gaming Republic community for their support and hosting of this game mode.<br/>
 <rr/>
 Also thank you to the 25th ARIAG (GEN M. Brown) community for hosting and providing lots of feedback on the
-mission features.<br/>
+mission features and Coderz (Drake) for his great feedback and suggestions!<br/>
 <br/>
 Finally, thank you for playing and I hope you enjoyed my loose interpretation of the Battle Royale (the movie).
 "]];

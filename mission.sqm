@@ -37,7 +37,7 @@ class Mission
 	randomSeed=6961369;
 	class Intel
 	{
-		briefingName="Combat Royale on Altis v1.5.31";
+		briefingName="Combat Royale on Altis v1.6.32";
 		overviewText="Multiplayer Deathmatch Survival Scenario; Find Weapons, Hunt other players, Survive!";
 		resistanceWest=0;
 		startWeather=0.29999998;
