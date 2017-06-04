@@ -16,20 +16,21 @@ class Mission
 		"A3_Structures_F_Walls",
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
-		"a3_weapons_f_ammoboxes"
+		"a3_weapons_f_ammoboxes",
+		"A3_Soft_F_Gamma_Hatchback_01",
+		"A3_Soft_F_Quadbike_01",
+		"A3_Soft_F_Gamma_SUV_01",
+		"A3_Soft_F_Gamma_Van_01"
 	};
 	addOnsAuto[]=
 	{
-		"A3_Characters_F_Civil",
-		"a3_characters_f",
-		"A3_Characters_F_BLUFOR",
-		"A3_Weapons_F_Beta_Ammoboxes",
-		"a3_weapons_f_ammoboxes",
-		"A3_Soft_F_Car",
+		"A3_Characters_F",
+		"A3_Weapons_F_Ammoboxes",
+		"A3_Soft_F_Gamma_Hatchback_01",
 		"A3_Soft_F_Offroad_01",
-		"A3_Soft_F_Quadbike",
-		"A3_Soft_F_SUV",
-		"A3_Soft_F_Truck",
+		"A3_Soft_F_Quadbike_01",
+		"A3_Soft_F_Gamma_SUV_01",
+		"A3_Soft_F_Gamma_Van_01",
 		"A3_Structures_F_Walls",
 		"a3_map_altis"
 	};

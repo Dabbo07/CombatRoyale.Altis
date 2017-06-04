@@ -4,6 +4,8 @@ if (isDedicated || isServer) then {
 	sleep 30;
 	publicVariable "playerBombID";
 	
+	_allUnits = [] + aiUnits + playableUnits;
+	
 	_selPlr = 0;
 	while {true} do {
 		_co = 0;
@@ -75,7 +77,7 @@ if (isDedicated || isServer) then {
 				};
 			};
 			_co = _co + 1;
-		} forEach playableUnits;
+		} forEach _allUnits;
 		sleep 0.5;
 	};
 };

@@ -59,7 +59,11 @@
 		_unit = _this;
 		_unit enableFatigue false;
 		removeAllWeapons _unit;
-		_unit addBackpack "B_Parachute";
+		_dropHeight = 0;
+		if (SPAWNTYPE == 0 || SPAWNTYPE == 3) then {
+			_unit addBackpack "B_Parachute";
+			_dropHeight = 1000;
+		};
 		_rg = floor(random STARTGUN);
 		//player globalChat format["Player equipped Magazine : %1", (obj_mags select _rg)];
 		//player globalChat format["Player equipped Weapon : %1", (obj_guns select _rg)];
@@ -101,7 +105,7 @@
 				_randSel = 0;
 			};
 		};
-		_unit setPos [_px + _rx, _py + _ry, 1000];
+		_unit setPos [_px + _rx, _py + _ry, _dropHeight];
 	};
 
 // Main process

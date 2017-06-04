@@ -27,6 +27,7 @@ if (isServer) then {
 		};
 		positionUpdate = 1;
 		publicVariable "positionUpdate";
-		sleep (TRACKINTERVAL);
+		// sleep (TRACKINTERVAL);
+		sleep .5;
 	};
 };

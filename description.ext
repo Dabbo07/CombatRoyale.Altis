@@ -337,7 +337,7 @@ class Params
 		title = "Game Mode Area";
 		values[] = {0,1,2};
 		texts[] = {"Flat, City","Mountains","Coastal City"};
-		default = 2;
+		default = 1;
 	};
 	class ZoneSize
 	{
@@ -353,7 +353,7 @@ class Params
 		title = "Zone Lifespan (Short, Medium, Long, Maximum)";
 		values[] = {70,50,25,0};
 		texts[] = {"Short","Medium","Long","Maximum"};
-		default = 50;
+		default = 70;
 	};
 	class PlayerTrackInterval
 	{
@@ -361,7 +361,7 @@ class Params
 		title = "Player Tracker Update Interval";
 		values[] = {30, 45, 60, 90, 120, 240, 300, 480, 600};
 		texts[] = {"30 seconds", "45 seconds", "1 minute", "1 minute 30 seconds", "2 minutes", "4 minutes", "5 minutes", "8 minutes", "10 minutes"};
-		default = 240;
+		default = 45;
 	};
 	class CrateMarkerSize
 	{
@@ -369,7 +369,7 @@ class Params
 		title = "Crate Marker Size";
 		values[] = {25, 60, 125, 300};
 		texts[] = {"Small (25m)", "Medium (60m)", "Large (125m)", "Huge (300m)"};
-		default = 125;
+		default = 60;
 	};
 	class CrateSpawnInterval
 	{
@@ -433,6 +433,14 @@ class Params
 		title = "Starting Weapon Group";
 		values[] = {5, 8, 20, 23, 27};
 		texts[] = {"Hand Guns(x5)", "+ SMGs (x3)", "+ Assault Rifles (x12)", "+ LMGs (x3)", "+ Sniper Rifles (x4)"};
-		default = 20;
+		default = 27;
+	};
+	class SpawnType
+	{
+		//paramsArray[13]
+		title = "Player Spawn Type";
+		values[] = {0, 1, 2, 3};
+		texts[] = {"All Units: Halo Drop", "All Units: On Ground", "Players Only: On Ground", "AI Only: On Ground"};
+		default = 3;
 	};
 };

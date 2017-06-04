@@ -55,7 +55,7 @@ if (isDedicated || isServer) then {
 			_zonesAliveLast = _zonesAlive;
 			publicVariable "EndGameUpdate";
 		};
-		if (_zonesAlive < 9) then {
+		if (_zonesAlive == 1) then {
 			MissionEndTrigger = 1;
 			publicVariable "MissionEndTrigger";
 			endMission "END1";

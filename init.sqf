@@ -33,6 +33,7 @@ SHIELDCARS = (paramsArray select 9);
 PLACECARS = (paramsArray select 10);
 AIENABLE = (paramsArray select 11);
 STARTGUN = (paramsArray select 12);
+SPAWNTYPE = (paramsArray select 13);
 
 enableSaving [false, false];
 
@@ -52,12 +53,12 @@ while {aiM < 50} do {
 
 CombatPlayerScore = 0;
 carMarks = ["car01m","car02m","car03m","car04m","car05m","car06m","car07m","car08m","car09m","car10m","car11m","car12m","car13m","car14m","car15m","car16m","car17m","car18m","car19m","car20m"];
-SAFEZONE = 54;
 introText = format["Welcome to Combat Royale Altis\nVersion %1\n\nBy Darren 'Dabbo' Edmonds.", VERSION];
 ZoneDialogMessage = "Zone Status...";
 zonesRemainUpdate = 0;
 ZoneDialogAlert = 0;
 EndGameUpdate = 0;
+
 if (isNil "ServerReady") then {
 	ServerReady = 0;
 };

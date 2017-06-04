@@ -67,13 +67,8 @@
 			_zoneLabel setMarkerColor "ColorRed";
 			zoneStatus = zoneStatus + [ 100 ];	// was 15
 		} else {
-			if (_zoneID == SAFEZONE) then {
-				_zoneLabel setMarkerColor "ColorBlue";
-				zoneStatus = zoneStatus + [ 0 ];
-			} else {
-				_zoneLabel setMarkerColor "ColorGreen";
-				zoneStatus = zoneStatus + [ ZONECREEP ];
-			};
+			_zoneLabel setMarkerColor "ColorGreen";
+			zoneStatus = zoneStatus + [ ZONECREEP ];
 		};
 	
 		zones = zones + [ _zoneLabel ];
@@ -113,13 +108,14 @@
 			if (_sel >= 68 && _sel <= 71) then {
 				_killZone = 1;
 			};
-			if (_killZone == 1 && _sel != SAFEZONE) then {
+			if (_killZone == 1) then {
 				zoneStatus set [_sel, 100];
 				(zones select _sel) setMarkerColor "ColorRed";
 			};
 			_sel = _sel + 1;
 		};
 	};
+	
 	if (ZONELIMIT < 1) then {
 		_sel = 0;
 		while {_sel < (count zones)} do {
@@ -139,11 +135,29 @@
 			if (_sel >= 57 && _sel <= 62) then {
 				_killZone = 1;
 			};
-			if (_killZone == 1 && _sel != SAFEZONE) then {
+			if (_killZone == 1) then {
 				zoneStatus set [_sel, 100];
 				(zones select _sel) setMarkerColor "ColorRed";
 			};
 			_sel = _sel + 1;
+		};
+	};
+
+	// Random SAFEZONE
+	_safeZoneSet = 0;
+	while {_safeZoneSet == 0} do {
+		SAFEZONE = floor(random (count zones));
+		
+		_pre = "";
+		if (SAFEZONE < 10) then {
+			_pre = "0";
+		};
+		_zoneLabel = format["zone%1%2", _pre, SAFEZONE];
+		
+		if ((zoneStatus select SAFEZONE) != 100) then {
+			zoneStatus set [SAFEZONE, 0];
+			_zoneLabel setMarkerColor "ColorBlue";
+			_safeZoneSet = 1;
 		};
 	};
 
@@ -176,6 +190,7 @@
 	};
 
 // Publish variables out to clients
+	publicVariable "SAFEZONE";
 	publicVariable "cars";
 	publicVariable "zones";
 	publicVariable "zoneStatus";

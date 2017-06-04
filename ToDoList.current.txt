@@ -1,0 +1,17 @@
+From @Coderz
+
+Bugs:
+* Player tends to teleport ontop of perachute when landing causing player to injure themselves or die. (Arma 3 engine bug, not mod related.)
+* A.I will walk out of the map unknowningly, I don't know how your code handles that situation. Maybe kill them or teleport them into a random square on the map.
+
+Features:
+[DONE] Random SafeZone Placement
+[SKIP] Dynamic AI Count (X number of bots that roam the map) - Limitation of Arma3 engine.
+* (In Parameters options) Being able to modify what weapons are most likely to spawn in a supply drop.
+[DONE] (In Parameters options) Spawn directly on ground instead or parachute.
+* (A.I Feature) A.I will move to a more safe zone if the Zone is becoming restricted.
+* (A.I Feature) A.I will loot nearby supply drops and will randomly be rearmed with a weapon. Then the supply drop will disappear. (Memory Optimized)
+* (A.I Feature) A.I will persue the highest bounty player/NPC (Should be a parameter) (NPC Aggresion)
+* A Safe zone could have a tower in the middle like a minature fort or something.
+* Vehicle Density (Forgot if this feature is included)
+[DONE] A.I Persue the safe zone agressively instead of being the restricted zone. (Near the end of the match, NPCs are harder to find since they're stuck in a restricted Zone and are rarely affected by the bombings since only Players are recognized by the bombing script.)

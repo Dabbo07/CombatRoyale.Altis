@@ -32,7 +32,12 @@ if (isServer) then {
 		_newUnit addMagazine (obj_mags select _rg);
 		_newUnit addMagazine (obj_mags select _rg);
 		_newUnit addWeapon (obj_guns select _rg);
-		_newUnit addBackpack "B_Parachute";
+
+		_dropHeight = 0;
+		if (SPAWNTYPE == 0 || SPAWNTYPE == 2) then {
+			_newUnit addBackpack "B_Parachute";
+			_dropHeight = 180;
+		};
 
 		_randSel = 10;
 		_zr = SAFEZONE;
@@ -62,9 +67,11 @@ if (isServer) then {
 			};
 		};
 			
-		_newUnit setPos [_px + _rx, _py + _ry, 180];
-		sleep .2;
-		_newUnit action ["OpenParachute", _newUnit];
+		_newUnit setPos [_px + _rx, _py + _ry, _dropHeight];
+		if (SPAWNTYPE == 0 || SPAWNTYPE == 2) then {
+			sleep .2;
+			_newUnit action ["OpenParachute", _newUnit];
+		};
 		_newUnit addMPEventHandler ["mpkilled", {_this spawn aiDeath}];
 	};
 
